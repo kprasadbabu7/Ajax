@@ -1,0 +1,82 @@
+
+    <input type="text" name="name" id="name" placeholder="name" />
+    <input type="text" name="email" id="email" placeholder="email" />
+    <input type="text" name="phone" id="phone" placeholder="phone" />
+<input type="file" name="file" />
+<button type="button" id="submit">submit</button>
+ 
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+<th>email</th>
+            <th>phones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var param = { "name": "sfdsafafsd", "salary": "123", "age": "23" };
+            param = JSON.stringify(param);
+            $.ajax({
+                type: "Post",
+                url: "http://dummy.restapiexample.com/api/v1/create",
+                contentType: "application/json; charset=utf-8",
+                data: param,
+                dataType: "json",
+                success: function (data) {
+                    getdata();
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        });
+                  
+        function getdata() {
+            $.ajax({
+                type: "GET",  
+                url: "http://dummy.restapiexample.com/api/v1/employees",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $(data).each(function () {
+                        $("tbody").append('<tr><td>' + this.employee_salary + '</td><td>' + this.employee_age + '</td><td>' + this.employee_name + '</td> </tr>')
+                        // alert(this.employee_salary)
+                    });
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+        };
+        getdata()
+
+
+        function getinfo() {
+            $.ajax({
+                type: "Get",
+                url: "/home/getData",
+                contentType: "application/json;charset=rctf-8",
+                dataType: "json",
+                success: function (data) {
+                    $(data).each(function(){
+
+                    })
+
+}
+            
+           
+
+
+            });
+        }
+    });
+</script>
